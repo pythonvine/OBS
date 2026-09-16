@@ -1,7 +1,5 @@
-# Documentation and source files only - no build artifacts, dependencies, or temp files detected
-# No .gitignore rules needed for this project structurenode_modules/
+obs-studio-src/node_modules/
 .next/
 dist/
 build/
 *.log
-node_modules/
