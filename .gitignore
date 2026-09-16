@@ -1,4 +1,5 @@
-node_modules/
+# Documentation and source files only - no build artifacts, dependencies, or temp files detected
+# No .gitignore rules needed for this project structurenode_modules/
 .next/
 dist/
 build/
