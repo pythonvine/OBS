@@ -1,51 +1,62 @@
 ```
-# Build artifacts
+# Compiled and build artifacts
+*.pyc
+__pycache__/
 *.o
 *.obj
-*.a
-*.lib
+*.class
+*.exe
 *.dll
 *.so
-*.dylib
-*.exe
+*.a
 *.out
 
 # Dependencies
 node_modules/
 venv/
 .venv/
-__pycache__/
-*.egg-info/
+.env
+.env.local
+.env.*
+
+# Build directories
 dist/
 build/
 target/
 .gradle/
+
+# Python specific
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+*.so
+.Python
+*.egg-info/
+.eggs/
+.mypy_cache/
+.pytest_cache/
+.coverage
+coverage/
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+*.swo
 
 # Editors
 .vscode/
 .idea/
 *.swp
 *.swo
-*.tmp
 
-# Logs
-*.log
-
-# Coverage
-.coverage
-coverage/
-htmlcov/
-
-# Environment
-.env
-.env.local
-*.env.*
-
-# System
+# System files
 .DS_Store
 Thumbs.db
 
-# Compressed
+# Compressed files
 *.zip
 *.gz
 *.tar
@@ -64,5 +75,29 @@ Thumbs.db
 *.Z
 *.lz
 *.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
+
+# Coverage reports
+coverage/
+htmlcov/
+
+# Distribution / packaging
+*.egg
+*.egg-info/
+dist/
+build/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 ```.next/
-.next/
