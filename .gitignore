@@ -1,5 +1,1 @@
-The provided input shows a single modified file 'obs-studio-src' which appears to be a source code repository directory. Since this is a source code file/directory and not a compiled artifact, dependency directory, or temporary file, it should not be added to .gitignore according to rule #7 which states "Never ignore source code or config files unless they are clearly generated or sensitive."
-
-The file change list does not contain any build artifacts, dependencies, or temp files that would require adding ignore rules to .gitignore.
-
-(empty)
+obs-studio-src/
