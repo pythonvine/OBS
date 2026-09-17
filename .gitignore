@@ -5,4 +5,3 @@ obs-studio-src/
 dist/
 build/
 *.log
-node_modules/
