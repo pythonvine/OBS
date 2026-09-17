@@ -5,3 +5,4 @@ No .gitignore content is needed for this case.node_modules/
 dist/
 build/
 *.log
+node_modules/
