@@ -1,0 +1,156 @@
+{
+  "project": "Bosh Broadcast Pro",
+  "version": "1.0.0-beta",
+  "build_system": {
+    "cmake_minimum": "3.20",
+    "compiler_requirements": {
+      "windows": "MSVC 2019+",
+      "macos": "Xcode 13+ (Clang)",
+      "linux": "GCC 9+ or Clang 12+"
+    },
+    "dependencies": {
+      "required": [
+        "Qt 6.5+",
+        "FFmpeg 5.0+",
+        "libobs (embedded)",
+        "CEF (Chromium Embedded Framework)"
+      ],
+      "optional_features": {
+        "ENABLE_BOSH_AI": ["Ollama SDK", "TensorFlow Lite C API"],
+        "ENABLE_BOSH_NDI": ["NDI 5.0 SDK"],
+        "ENABLE_BOSH_AR_FACE": ["MediaPipe C++"],
+        "ENABLE_BOSH_NEURAL_STYLE": ["TensorFlow Lite C API"],
+        "ENABLE_BOSH_SMART_GREEN": ["ONNX Runtime"],
+        "ENABLE_HUMAN_VOICE": ["librosa (Python bridge)", "RVC models (optional)"],
+        "ENABLE_METaverse_BRIDGE": ["WebSocket client", "Unity/Unreal bridge SDKs"],
+        "ENABLE_AUTO_SPONSOR": ["Ad server API integration"]
+      }
+    }
+  },
+  "installer_config": {
+    "windows": {
+      "tool": "InnoSetup",
+      "script": "installer/windows/bosh_installer.iss",
+      "output": "BoshBroadcastPro-1.0.0-beta.exe",
+      "icon": "plugins/bosh/data/assets/icons/bosh_icon.ico",
+      "install_dir": "{pf}\\Bosh Broadcast Pro",
+      "start_menu_folder": "Bosh Broadcast Pro",
+      "file_associations": [".boshprofile", ".boshscene"],
+      "registry_keys": [
+        "HKLM\\SOFTWARE\\BoshBroadcastPro",
+        "HKCU\\Software\\BoshBroadcastPro"
+      ],
+      "bundled_runtimes": [
+        "vcredist_x64.dll",
+        "dotnet_runtime_8.exe"
+      ]
+    },
+    "macos": {
+      "tool": "create-dmg",
+      "script": "installer/macos/create_dmg.sh",
+      "output": "BoshBroadcastPro-1.0.0-beta.dmg",
+      "app_bundle": "Bosh Broadcast Pro.app",
+      "signing_identity": "Developer ID Application: [Your Name]",
+      "notarization": true,
+      "min_os_version": "11.0",
+      "supported_architectures": ["x86_64", "arm64"],
+      "dmg_background": "installer/macos/dmg_background.png",
+      "dmg_window_size": [600, 400]
+    },
+    "linux": {
+      "deb": {
+        "package_name": "bosh-broadcast-pro",
+        "maintainer": "Bosh Team <team@boshbroadcast.pro>",
+        "section": "video",
+        "priority": "optional",
+        "dependencies": [
+          "qt6-base",
+          "ffmpeg",
+          "libcef",
+          "libndi",
+          "gstreamer1.0"
+        ],
+        "install_path": "/opt/bosh-broadcast-pro",
+        "desktop_file": "installer/linux/bosh-broadcast-pro.desktop",
+        "icon_paths": [
+          "/usr/share/icons/hicolor/256x256/apps/bosh.png"
+        ]
+      },
+      "rpm": {
+        "package_name": "bosh-broadcast-pro",
+        "group": "Applications/Multimedia",
+        "license": "GPL-2.0",
+        "dependencies": [
+          "qt6-qtbase",
+          "ffmpeg-free",
+          "libcef",
+          "gstreamer1"
+        ],
+        "install_path": "/opt/bosh-broadcast-pro"
+      },
+      "appimage": {
+        "appdir": "installer/linux/AppDir",
+        "desktop_file": "bosh-broadcast-pro.desktop",
+        "icon": "plugins/bosh/data/assets/icons/bosh_icon.svg",
+        "bundle_qt": true,
+        "exclude_patterns": [
+          "*.dev",
+          "*.a",
+          "include/*"
+        ]
+      }
+    }
+  },
+  "assets_to_bundle": {
+    "templates": "plugins/bosh/data/assets/templates/**/*",
+    "themes": "plugins/bosh/data/assets/themes/**/*",
+    "avatars": "plugins/bosh/data/assets/avatars/**/*",
+    "sounds": "plugins/bosh/data/assets/sounds/**/*",
+    "voices": "plugins/bosh/data/voices/**/*",
+    "models": "plugins/bosh/data/models/**/*",
+    "localization": "plugins/bosh/data/locale/**/*"
+  },
+  "exclusions": [
+    "*.git",
+    "*.md",
+    "test/",
+    "docs/",
+    "build*/",
+    "*.o",
+    "*.obj",
+    "*.pdb"
+  ],
+  "post_install_scripts": {
+    "windows": "installer/windows/post_install.bat",
+    "macos": "installer/macos/post_install.sh",
+    "linux": "installer/linux/post_install.sh"
+  },
+  "telemetry": {
+    "enabled_by_default": false,
+    "opt_in_prompt": true,
+    "endpoint": "https://telemetry.boshbroadcast.pro/v1/events",
+    "events_tracked": [
+      "install_complete",
+      "first_stream_start",
+      "crash_report",
+      "feature_usage_summary"
+    ],
+    "pii_stored": "none",
+    "gdpr_compliant": true
+  },
+  "auto_update": {
+    "enabled": true,
+    "channel": "beta",
+    "manifest_url": "https://releases.boshbroadcast.pro/latest.json",
+    "check_interval_hours": 24,
+    "downloadInBackground": true,
+    "prompt_before_install": true
+  },
+  "migration": {
+    "import_obs_profiles": true,
+    "import_scene_collections": true,
+    "import_hotkeys": true,
+    "backup_before_migration": true,
+    "rollback_available": true
+  }
+}
