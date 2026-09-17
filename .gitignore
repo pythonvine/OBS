@@ -101,3 +101,4 @@ wheels/
 .installed.cfg
 *.egg
 ```.next/
+.next/
