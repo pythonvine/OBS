@@ -1,6 +1,7 @@
-obs-studio-src/node_modules/
+```
+obs-studio-src/
+```node_modules/
 .next/
 dist/
 build/
 *.log
-node_modules/
