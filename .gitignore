@@ -5,3 +5,4 @@ Therefore, the output is empty as no ignore rules are needed.node_modules/
 dist/
 build/
 *.log
+node_modules/
