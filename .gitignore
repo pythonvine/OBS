@@ -58,3 +58,4 @@ htmlcov/
 *.lz
 *.lzo
 ```.next/
+.next/
